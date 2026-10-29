@@ -5,6 +5,16 @@ Prof. Howard Cruz Roatti · Lançado na Aula 8 (24/09) · Entrega na Aula 12 (29
 
 ---
 
+## Equipa
+
+- Bernardo Antônio Merlo Soares
+- Bruno Emanuel Sales Rocha de Aguiar
+- Kaio Barbosa Linhares
+- Rafael Barcelos de Aquino Moura
+- Rikelme Mindelo Biague
+
+---
+
 ## O que é isto
 
 RAG (geração aumentada por recuperação) permite que um modelo de linguagem responda
@@ -21,11 +31,11 @@ ser protegida.
 
 ---
 
-## Como começar
+## Como começar (Execução Local)
 
 ```bash
 # 1. Clone o kit e entre na pasta
-git clone https://github.com/howardroatti/sd-2026-2-kit-c2a2.git
+git clone [https://github.com/howardroatti/sd-2026-2-kit-c2a2.git](https://github.com/howardroatti/sd-2026-2-kit-c2a2.git)
 cd sd-2026-2-kit-c2a2
 
 # 2. Crie e ative o ambiente virtual
@@ -37,13 +47,11 @@ source .venv/bin/activate
 
 # 3. Instale as dependências
 pip install -r requirements.txt
-```
 
-```bash
-# 4. Copie o arquivo de ambiente (funciona offline sem chave de LLM)
+# 4. Copie o ficheiro de ambiente (funciona offline sem chave de LLM)
 cp .env.example .env
 
-# 5. Suba os três serviços, cada um em um terminal
+# 5. Suba os três serviços, cada um num terminal
 uvicorn servicos.ingestao.app:app     --port 8001
 uvicorn servicos.recuperacao.app:app  --port 8002
 uvicorn servicos.geracao.app:app      --port 8003
