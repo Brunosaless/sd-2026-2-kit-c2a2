@@ -19,11 +19,18 @@ URL_INGESTAO = os.getenv("URL_INGESTAO", "http://localhost:8001")
 
 
 class Consulta(BaseModel):
+    """Modelo Pydantic para validar o corpo da requisicao do endpoint de busca."""
     pergunta: str
     top_k: int = 3
 
 
 def _extrair_termos(texto: str) -> set[str]:
+    """Extrai palavras relevantes de um texto, removendo pontuacoes e stopwords.
+
+    :param texto: String de entrada para ser tokenizada.
+    :return: Conjunto (set) de termos filtrados e em letras minusculas.
+    """
+
     stopwords = {
         "de", "da", "do", "das", "dos", "em", "no", "na", "nos", "nas",
         "um", "uma", "uns", "umas", "para", "por", "com", "sem", "que",
@@ -34,7 +41,14 @@ def _extrair_termos(texto: str) -> set[str]:
 
 
 def _calcular_score_rerank(pergunta: str, texto_doc: str, score_vetorial: float) -> float:
-    """Reordena candidatos combinando similaridade vetorial e sobreposicao lexical."""
+    """Reordena candidatos combinando similaridade vetorial e sobreposicao lexical.
+
+    :param pergunta: Texto da pergunta do usuario.
+    :param texto_doc: Conteudo do documento avaliado.
+    :param score_vetorial: Pontuacao de similaridade por vetores (0.0 a 1.0).
+    :return: Score ponderado combinando busca vetorial (75%) e busca lexical (25%).
+    """
+
     termos_pergunta = _extrair_termos(pergunta)
     if not termos_pergunta:
         return score_vetorial
@@ -47,6 +61,7 @@ def _calcular_score_rerank(pergunta: str, texto_doc: str, score_vetorial: float)
 @app.post("/buscar")
 def buscar(consulta: Consulta):
     """Devolve os top_k trechos mais parecidos com a pergunta, reordenados por relevancia."""
+    
     url_ingestao = os.getenv("URL_INGESTAO", URL_INGESTAO)
     try:
         r = requests.get(f"{url_ingestao}/indice", timeout=10)
@@ -89,4 +104,6 @@ def buscar(consulta: Consulta):
 
 @app.get("/saude")
 def saude():
+    """Endpoint para verificacao da saude (healthcheck) do servico."""
+    
     return {"status": "ok"}
