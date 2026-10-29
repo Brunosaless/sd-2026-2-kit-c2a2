@@ -9,7 +9,7 @@ Prof. Howard Cruz Roatti · Lançado na Aula 8 (24/09) · Entrega na Aula 12 (29
 
 - Bernardo Antônio Merlo Soares
 - Bruno Emanuel Sales Rocha de Aguiar
-- K
+- Kaio Barbosa Linhares
 - Rafael Barcelos de Aquino Moura
 - Rikelme Mindelo Biague
 
