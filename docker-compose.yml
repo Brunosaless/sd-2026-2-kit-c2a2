@@ -65,5 +65,4 @@ services:
       - recuperacao
       - redis
 
-volumes:
-  dados_indice:
+
