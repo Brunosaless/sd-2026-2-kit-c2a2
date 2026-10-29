@@ -17,7 +17,7 @@ class CircuitoAberto(Exception):
 
 
 class CircuitBreaker:
-  """Implementacao do padrao Circuit Breaker para evitar chamadas seguidas
+    """Implementacao do padrao Circuit Breaker para evitar chamadas seguidas
 
     a servicos externos instaveis ou fora do ar.
     """
